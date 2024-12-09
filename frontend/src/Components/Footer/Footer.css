@@ -1,0 +1,54 @@
+/* Footer container styling */
+.footer {
+    background-color: #333; /* Dark background for the footer */
+    color: white; /* White text color */
+    text-align: center; /* Center-aligns the text */
+    padding: 20px; /* Adds padding inside the footer */
+    font-family: Arial, sans-serif; /* Sets a clean font */
+    margin-top: 20px; /* Adds spacing between the footer and the content above */
+  }
+  
+  /* Footer paragraph styling */
+  .footer p {
+    font-size: 14px; /* Smaller font size for the description */
+    margin-bottom: 15px; /* Adds spacing below the paragraph */
+  }
+  
+  /* Footer information section */
+  .footerInfo {
+    display: flex; /* Creates a horizontal layout for the info */
+    justify-content: center; /* Centers the content */
+    gap: 20px; /* Adds spacing between items */
+    flex-wrap: wrap; /* Ensures items wrap to the next line on smaller screens */
+  }
+  
+  /* Styling for individual info items */
+  .info {
+    margin: 0; /* Removes default margin for headers */
+    font-size: 14px; /* Uniform font size for the info text */
+  }
+  
+  /* Social links container */
+  .socialLinks {
+    margin-top: 20px; /* Adds space above the social links */
+    display: flex; /* Aligns social links in a row */
+    justify-content: center; /* Centers the links */
+    gap: 15px; /* Adds spacing between the links */
+  }
+  
+  /* Styling for social media links */
+  .socialLinks a {
+    text-decoration: none; /* Removes underline from links */
+    color: #e0b0ed; /* Highlighted text color */
+    font-size: 14px; /* Uniform font size for links */
+    font-weight: bold; /* Makes the links bold */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .socialLinks a:hover {
+    color: white; /* Changes color when the link is hovered */
+  }
+  .mail{
+    color: white;
+    font-style: normal;
+  }

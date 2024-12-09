@@ -1,0 +1,23 @@
+/* Styling for the navigation bar container */
+.headerContent {
+  display: flex; /* Aligns the links in a horizontal row */
+  justify-content: center; /* Centers the links horizontally */
+  align-items: center; /* Vertically aligns the links */
+  background-color: #333; /* Background color for the navigation bar */
+  padding: 10px 20px; /* Adds padding inside the navigation bar */
+  gap: 20px; /* Adds spacing between the links */
+}
+
+/* Styling for the links */
+.header {
+  text-decoration: none; /* Removes underline from links */
+  color: white; /* Sets the text color for the links */
+  padding: 10px 15px; /* Adds padding around the links */
+  font-size: 16px; /* Font size for links */
+  font-weight: bold; /* Makes the links bold */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.header:hover {
+  color: #cd84de; /* Change link color on hover */
+}
