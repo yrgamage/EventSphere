@@ -22,3 +22,11 @@ body {
   padding: 10px 20px;
   background-color: #f8f9fa;
 }
+.home{
+  display: flex;
+  margin: 5px;
+  padding: auto;
+  gap: 10px;
+
+
+}

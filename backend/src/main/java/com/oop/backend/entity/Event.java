@@ -8,9 +8,9 @@ import jakarta.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "event")
-
+@AllArgsConstructor
+@Builder
 public class Event {
     public static int  numberOfVendor=0;
     @Id
@@ -21,17 +21,11 @@ public class Event {
     private int eventID;
     private String eventName;
     @Positive
-    @Min(3)
-    @Max(100)
     private int ticketCount;
     private String eventDate;
     private String eventTime;
     private String eventLocation;
     @Positive
     private int ticketPrice;
-
-    @Lob
-    @Column(name = "eventImage")
-    private byte[] eventImage;
-
+    private String eventImage;
 }

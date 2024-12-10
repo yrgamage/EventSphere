@@ -1,0 +1,66 @@
+/* General Card Styling */
+.card {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    width: 350px;
+    margin: 10px auto;
+    box-shadow: 0px 4px 6px rgba(237, 223, 223, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Card Header */
+  .card-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    background-color: #f5f5f5;
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  /* Input Fields */
+  .card-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f5f5f5;  /* Same as card background */
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .card-input:focus {
+    outline: none;
+    border-color: #007bff;
+    background-color: #fff;
+  }
+  
+  /* Card Footer (Image) */
+  .card-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .card-image {
+    border-radius: 4px;
+    object-fit: cover;
+  }
+  

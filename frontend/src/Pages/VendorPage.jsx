@@ -1,33 +1,37 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const EventForm = () => {
   const navigate = useNavigate();
   const [formSubmitted, setFormSubmitted] = useState(false);
 
+  const [formData, setFormData] = useState({
+    eventName: "",
+    ticketCount: 0,
+    eventDate: "",
+    eventTime: "",
+    eventLocation: "",
+    ticketPrice: 0,
+    image: null,
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const form = e.target;
-    const eventName = form.name.value;
-    const ticketCount = parseInt(form.number.value, 10);
-    const eventDate = form.date.value;
-    const eventTime = form.time.value;
-    const eventLocation = form.location.value;
-    const ticketPrice = form.price.value;
+    const formDataToSend = new FormData();
+    formDataToSend.append("eventName", formData.eventName);
+    formDataToSend.append("ticketCount", formData.ticketCount);
+    formDataToSend.append("eventDate", formData.eventDate);
+    formDataToSend.append("eventTime", formData.eventTime);
+    formDataToSend.append("eventLocation", formData.eventLocation);
+    formDataToSend.append("ticketPrice", formData.ticketPrice);
+    if (formData.image) formDataToSend.append("image", formData.image);
 
     try {
       const response = await fetch("http://localhost:8080/event/saveEvent", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          eventName,
-          ticketCount,
-          eventDate,
-          eventTime,
-          eventLocation,
-          ticketPrice,
-        }),
+        body: formDataToSend,
       });
 
       if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
@@ -39,39 +43,13 @@ const EventForm = () => {
     }
   };
 
-  const SendingStart = async () => {
-    try {
-      const response = await fetch("http://localhost:8080/api/frontend/startButton", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: "start" }),
-      });
+  const handleInputChange = (e) => {
+    const { name, value, type, files } = e.target;
 
-      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-      const data = await response.json();
-      console.log("Event started", data);
-    } catch (error) {
-      console.error("Error:", error.message);
-    }
-  };
-
-  const SendingStop = async () => {
-    try {
-      const response = await fetch("http://localhost:8080/api/frontend/stopButton", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: "stop" }),
-      });
-
-      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-      const data = await response.json();
-      console.log("Event stopped", data);
-
-      
-  
-    } catch (error) {
-      console.error("Error:", error.message);
-    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "file" ? files[0] : value,
+    }));
   };
 
   const handleBack = () => navigate("/");
@@ -79,23 +57,66 @@ const EventForm = () => {
   return (
     <>
       {!formSubmitted ? (
-        <form onSubmit={handleSubmit} id="eventForm">
+        <form onSubmit={handleSubmit} id="eventForm" encType="multipart/form-data">
           <h3 className="h3">Event Details</h3>
           <div className="form-group">
-            <label htmlFor="name">Event Name</label>
-            <input className="pass" name="name" type="text" required />
-            <label htmlFor="number">Number of Tickets</label>
-            <input className="pass" name="number" type="number" required />
-            <label htmlFor="date">Date</label>
-            <input className="pass" name="date" type="date" required />
-            <label htmlFor="time">Time</label>
-            <input className="pass" name="time" type="time" required />
-            <label htmlFor="location">Location</label>
-            <input className="pass" name="location" type="text" required />
-            <label htmlFor="price">Ticket Price</label>
-            <input className="pass" name="price" type="number" required />
+            <label htmlFor="eventName">Event Name</label>
+            <input
+              className="pass"
+              name="eventName"
+              type="text"
+              value={formData.eventName}
+              onChange={handleInputChange}
+              required
+            />
+            <label htmlFor="ticketCount">Number of Tickets</label>
+            <input
+              className="pass"
+              name="ticketCount"
+              type="number"
+              value={formData.ticketCount}
+              onChange={handleInputChange}
+              required
+            />
+            <label htmlFor="eventDate">Date</label>
+            <input
+              className="pass"
+              name="eventDate"
+              type="date"
+              value={formData.eventDate}
+              onChange={handleInputChange}
+            />
+            <label htmlFor="eventTime">Time</label>
+            <input
+              className="pass"
+              name="eventTime"
+              type="time"
+              value={formData.eventTime}
+              onChange={handleInputChange}
+            />
+            <label htmlFor="eventLocation">Location</label>
+            <input
+              className="pass"
+              name="eventLocation"
+              type="text"
+              value={formData.eventLocation}
+              onChange={handleInputChange}
+            />
+            <label htmlFor="ticketPrice">Ticket Price</label>
+            <input
+              className="pass"
+              name="ticketPrice"
+              type="number"
+              value={formData.ticketPrice}
+              onChange={handleInputChange}
+            />
             <label htmlFor="image">Image</label>
-            <input className="pass" name="image" type="file" />
+            <input
+              className="pass"
+              name="image"
+              type="file"
+              onChange={handleInputChange}
+            />
           </div>
           <button className="cancel" type="button" onClick={handleBack}>
             Reset
@@ -106,11 +127,11 @@ const EventForm = () => {
         </form>
       ) : (
         <div className="start-button">
-          <button className="submit" onClick={SendingStart}>
+          <button className="submit" onClick={() => console.log("Start triggered")}>
             Start
           </button>
           <p className="p">Click to start ticket releasing</p>
-          <button className="submit" onClick={SendingStop}>
+          <button className="submit" onClick={() => console.log("Stop triggered")}>
             Stop
           </button>
           <p className="p" style={{ color: "white" }}>
