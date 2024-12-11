@@ -1,4 +1,7 @@
+
 package org.example;
+
+import java.util.logging.Level;
 
 public class BuyTicket  implements Runnable{
 
@@ -24,19 +27,19 @@ public class BuyTicket  implements Runnable{
                     String customerId = Thread.currentThread().getName();// Use thread name as customer ID
                     // Wait if no tickets are available
                     while (TicketPool.ticketPool.isEmpty()) {
-                        System.out.println("Pool is empty.. customer "+customerId+" is waiting for tickets");
+                        LoggerClass.log(Level.INFO,"Pool is empty.. customer "+customerId+" is waiting for tickets","YELLOW");
                         key.wait();
                     }
 
-                    for(int i=0;i<=ticketCount;i++){
+                    for(int i=1;i<=ticketCount+1;i++){
                         if(increment>=obj.getCustomerRetrievalRate()){
-                            System.out.println("Exceeded the limit of buying tickets for this 15 seconds..  customer "+customerId+" is waiting to buy a ticket");
-                            Thread.sleep(15000-(increment*1000)); // Delay to achieve  tickets per 15 second,Assumed one thread will run for one second
+                            LoggerClass.log(Level.INFO,"Exceeded the limit of buying tickets for this 15 seconds..  customer "+customerId+" is waiting to buy a ticket","BLUE");
+                            Thread.sleep(16000-(increment*1000)); // Delay to achieve  tickets per 15 second,Assumed one thread will run for one second
                             increment=0;                                  //Resetting rate
-                        }else if(!TicketPool.ticketPool.isEmpty()){
+                        }else if(!TicketPool.ticketPool.isEmpty() && increment<obj.getCustomerRetrievalRate()){
                             int ticketID = TicketPool.ticketPool.poll();
                             increment++;
-                            System.out.println("Customer " + customersCount + " " + customerId + " bought a ticket NO : "+ticketID+" pool size "+TicketPool.ticketPool.size());
+                            LoggerClass.log(Level.INFO,"Customer " + customersCount + " " + customerId + " bought a ticket NO : "+ticketID+" pool size "+TicketPool.ticketPool.size(),"CYAN");
                             key.notifyAll(); // Notify other threads
                             Thread.sleep(1000); // Delay to print the message
                         }

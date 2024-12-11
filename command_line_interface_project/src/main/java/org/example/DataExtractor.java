@@ -1,6 +1,7 @@
 package org.example;
 
 import java.sql.*;
+import java.util.logging.Level;
 
 public class DataExtractor {
 
@@ -23,7 +24,7 @@ public class DataExtractor {
 
             if (resultSet.next()) {
                 // Row is locked and can be used
-                System.out.println("Row is locked for processing.");
+                LoggerClass.log(Level.INFO,"Row is locked for processing.","MAGENTA");
 
 
                 float CRR = resultSet.getFloat("customer_retrieval_rate");
@@ -31,13 +32,13 @@ public class DataExtractor {
                 float TRR = resultSet.getFloat("ticket_release_rate");
                 int TT = resultSet.getInt("total_tickets");
                 connection.commit();
-                System.out.println("Transaction committed. Last row data extracted.");
+                LoggerClass.log(Level.INFO,"Transaction committed. Last row data extracted.","MAGENTA");
 
                 return new Configuration(TT, TRR, CRR, MCT);
 
             }
              else {
-                System.out.println("Table is empty.");
+                LoggerClass.log(Level.SEVERE,"Table is empty.","RED");
                 return null; // No data in the table
             }
         } catch (Exception e) {
@@ -45,12 +46,12 @@ public class DataExtractor {
             try {
                 if (connection != null) {
                     connection.rollback();
-                    System.out.println("Transaction rolled back.");
+                    LoggerClass.log(Level.SEVERE,"Transaction rolled back.","RED");
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            System.out.println("Unable to retrieve data: " + e.getMessage());
+            LoggerClass.log(Level.SEVERE,"Unable to retrieve data: " + e.getMessage(),"RED");
             e.printStackTrace();
             return null;
         } finally {
