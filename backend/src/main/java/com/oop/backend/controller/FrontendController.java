@@ -22,6 +22,7 @@ public class FrontendController {
     private Configuration config;
     @Autowired
     private ConfigurationService configurationService;
+
     private final TreadPool treadPool;
 
 
@@ -30,8 +31,9 @@ public class FrontendController {
     public ResponseEntity<Object> startButton(@RequestBody MyRequest myRequest) {
         // Log the message received from the frontend
         System.out.println(myRequest.getMessage());
-        if(myRequest.getMessage().equals("start")){
-            TreadPool.startThreadPool(configurationService.getConfig());
+        if(myRequest.getMessage().equalsIgnoreCase("start")){
+            treadPool.startThreadPool(configurationService.getConfig());
+            System.out.println("Thread Started");
         }
 
         // Wrap the response message in a Map or use a custom response object
@@ -45,7 +47,7 @@ public class FrontendController {
     @PostMapping("/stopButton")
     public ResponseEntity<Object> stopButton(@RequestBody MyRequest request){
         System.out.println(request.getMessage());
-        if (request.getMessage().equals("stop")){
+        if (request.getMessage().equalsIgnoreCase("stop")){
             treadPool.stopAllThreads();
         }
         Map<String,String> response = new HashMap<>();

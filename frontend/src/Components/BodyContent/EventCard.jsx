@@ -1,8 +1,10 @@
-// EventCard.jsx
 import './EventCard.css';
 import PropTypes from 'prop-types';
+
 function EventCard(props) {
-  // Check if event is undefined or null before rendering
+  const { eventName, eventLocation, eventDate, eventTime, ticketCount, imageUrl } = props;
+
+  // Check if props are undefined or null before rendering
   if (!props) {
     return <div>Event data not available</div>;
   }
@@ -10,60 +12,46 @@ function EventCard(props) {
   return (
     <div className="card">
       <div className="card-content">
-        <label className="card-label">Event Name:</label>
-        <input
-          className="card-input"
-          value={props.eventName || "N/A"} // Default to "N/A" if eventName is not available
-          readOnly
-          style={{ backgroundColor: "inherit" }}
-        />
-        {props.imageUrl && (
+        <div className="event-field">
+          <span className="value">{eventName || "Not Provided"}</span>
+        </div>
+        {imageUrl && (
           <img
             className="card-image"
-            src={props.imageUrl}
+            src={imageUrl}
             alt="Event"
             height={300}
           />
         )}
-        <label className="card-label">Event Location:</label>
-        <input
-          className="card-input"
-          value={props.eventLocation || "N/A"} // Default to "N/A" if eventLocation is not available
-          readOnly
-          style={{ backgroundColor: "inherit" }}
-        />
-        <label className="card-label">Event Date:</label>
-        <input
-          className="card-input"
-          value={props.eventDate || "N/A"} // Default to "N/A" if eventDate is not available
-          readOnly
-          style={{ backgroundColor: "inherit" }}
-        />
-        <label className="card-label">Event Time:</label>
-        <input
-          className="card-input"
-          value={props.eventTime || "N/A"} // Default to "N/A" if eventTime is not available
-          readOnly
-          style={{ backgroundColor: "inherit" }}
-        />
-        <label className="card-label">Total Tickets:</label>
-        <input
-          className="card-input"
-          value={props.ticketCount || 0} // Default to 0 if ticketCount is not available
-          readOnly
-          style={{ backgroundColor: "inherit" }}
-        />
+        <div className="event-field">
+          <span className="label">Event Location:</span>
+          <span className="value">{eventLocation || "Not Provided"}</span>
+        </div>
+        <div className="event-field">
+          <span className="label">Event Date:</span>
+          <span className="value">{eventDate || "Not Provided"}</span>
+        </div>
+        <div className="event-field">
+          <span className="label">Event Time:</span>
+          <span className="value">{eventTime || "Not Provided"}</span>
+        </div>
+        <div className="event-field">
+          <span className="label">Available Tickets:</span>
+          <span className="value">{ticketCount || 0}</span>
+        </div>
       </div>
     </div>
   );
 }
+
 // Prop validation with PropTypes
 EventCard.propTypes = {
-  eventName: PropTypes.string,         // Should be a string
-  eventLocation: PropTypes.string,     // Should be a string
-  eventDate: PropTypes.string,         // Should be a string
-  eventTime: PropTypes.string,         // Should be a string
-  ticketCount: PropTypes.number,       // Should be a number
-  imageUrl: PropTypes.string,          // Should be a string (URL of the image)
+  eventName: PropTypes.string,
+  eventLocation: PropTypes.string,
+  eventDate: PropTypes.string,
+  eventTime: PropTypes.string,
+  ticketCount: PropTypes.number,
+  imageUrl: PropTypes.string,
 };
+
 export default EventCard;

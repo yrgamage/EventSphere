@@ -18,7 +18,7 @@ import java.util.Map;
 @CrossOrigin
 
 public class EventController {
-    public static int ticketCount;
+    public static int TicketCount;
     @Autowired
     public EventService eventService;
 
@@ -34,6 +34,9 @@ public class EventController {
 
         // Call the modified saveEvent method with all parameters
         Event savedEvent = eventService.saveEvent(file, eventName, ticketCount, eventDate, eventTime, eventLocation, ticketPrice);
+        Event.numberOfVendor++;
+        TicketCount = ticketCount;
+
 
         // Return the saved event details in the response
         return ResponseEntity.status(HttpStatus.OK)

@@ -1,11 +1,14 @@
-
-import Event from '../Components/BodyContent/EventCard';
+import EventCard from '../Components/BodyContent/EventCard'; // Fixed import to align with the actual file
 import { useState, useEffect } from 'react';
+import Header from '../Components/Header/Header';
+import Footer from '../Components/Footer/Footer';
 
 function Home() {
+  console.log("Home component rendered");
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
+    console.log("useEffect executed");
     // Fetch the data from your backend
     fetch("http://localhost:8080/event/eventsWithImages")
       .then((response) => {
@@ -16,35 +19,43 @@ function Home() {
       })
       .then((data) => {
         console.log("API Response:", data);
-        if (data && Array.isArray(data.event)) {
-          // Assuming the backend returns an array of events
-          const eventsData = data.event.map((event,index) => ({
-            eventName: event.eventName,
-            eventLocation: event.eventLocation,
-            eventDate: event.eventDate,
-            eventTime: event.eventTime,
-            ticketCount: event.ticketCount,
-            imageUrl: data.image[index] ? `data:image/jpeg;base64,${data.image[index]}` : null,
+
+        if (data && Array.isArray(data)) {
+          // Map the array where each item contains both an event and an image
+          const eventsData = data.map((item) => ({
+            eventId: item.event.eventID,
+            eventName: item.event.eventName,
+            eventLocation: item.event.eventLocation,
+            eventDate: item.event.eventDate,
+            eventTime: item.event.eventTime,
+            ticketCount: item.event.ticketCount,
+            imageUrl: item.image ? `data:image/jpeg;base64,${item.image}` : null,
           }));
+          console.log("Mapped Events Data:", eventsData); // Verify mapped data
           setEvents(eventsData);
         }
       })
       .catch((error) => console.error("Fetch Error:", error));
-  }, []);
+  }, []); // Runs once on component mount
 
   if (events.length === 0) {
     return <div>Loading events...</div>;
   }
+
   return (
+    <>
+    <Header/>
     <div>
-      <h1>Upcoming Events</h1>
       <div className="event-list">
-        {events.map((event, index) => (
-          <Event key={index} event={event} />
-        ))}
+        {events.map((event, index) => {
+          console.log(`Rendering EventCard - Index: ${index}`, event);
+          return <EventCard key={event.eventId || index} {...event} />;
+        })}
       </div>
     </div>
-  )
+    <Footer/>
+    </>
+  );
 }
 
-export default Home
+export default Home;

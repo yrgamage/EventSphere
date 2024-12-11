@@ -18,10 +18,13 @@ public class TreadPool {
     public static void startThreadPool(Configuration obj) {
         TicketPool.addingTotalTickets(obj);
 
+
         // Create and start vendor threads for releasing tickets
         for (int i = 1; i <= Event.numberOfVendor; i++) {
-            ReleaseTicket releaseTicket = new ReleaseTicket(i, obj, EventController.ticketCount);
+            ReleaseTicket releaseTicket = new ReleaseTicket(i, obj, EventController.TicketCount);
             Thread customerThread = new Thread(releaseTicket);
+            System.out.println("vendor creted");
+            System.out.println(EventController.TicketCount);
             activeThreads.add(customerThread); // Add thread to active threads list
             customerThread.start();
         }

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Components/Header/Header';
+import Footer from '../Components/Footer/Footer';
 
 
 const EventForm = () => {
@@ -51,11 +53,46 @@ const EventForm = () => {
       [name]: type === "file" ? files[0] : value,
     }));
   };
+  const SendingStart = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/frontend/startButton", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: "start" }),
+      });
+
+      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+      const data = await response.json();
+      console.log("Event started", data);
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
+
+  const SendingStop = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/frontend/stopButton", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: "stop" }),
+      });
+
+      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+      const data = await response.json();
+      console.log("Event stopped", data);
+
+      
+  
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
 
   const handleBack = () => navigate("/");
 
   return (
     <>
+      <Header />
       {!formSubmitted ? (
         <form onSubmit={handleSubmit} id="eventForm" encType="multipart/form-data">
           <h3 className="h3">Event Details</h3>
@@ -127,11 +164,11 @@ const EventForm = () => {
         </form>
       ) : (
         <div className="start-button">
-          <button className="submit" onClick={() => console.log("Start triggered")}>
+          <button className="submit" onClick={SendingStart}>
             Start
           </button>
           <p className="p">Click to start ticket releasing</p>
-          <button className="submit" onClick={() => console.log("Stop triggered")}>
+          <button className="submit" onClick={SendingStop}>
             Stop
           </button>
           <p className="p" style={{ color: "white" }}>
@@ -142,6 +179,7 @@ const EventForm = () => {
           </button>
         </div>
       )}
+      <Footer />
     </>
   );
 };

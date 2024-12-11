@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./page.css";
+import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
 
 function Parameters() {
   const [records, setRecords] = useState({
@@ -40,46 +42,50 @@ function Parameters() {
   };
 
   return (
-    <form>
-      <h3 className="h3">Parameters</h3>
-      <p>View only</p>
-      <label>Maximum Tickets:</label>
-      
-      <input
-        type="text"
-        name="parameter1"
-        value={records.parameter1 ||""}
-        onChange={handleInputChange}
-        readOnly
-      />
-      <br />
-      <label>Total Tickets:</label>
-      <input
-        type="text"
-        name="parameter2"
-        value={records.parameter2 ||""}
-        onChange={handleInputChange}
-        readOnly
-      />
-      <br />
-      <label>Ticket Release Rate:</label>
-      <input
-        type="text"
-        name="parameter3"
-        value={records.parameter3 ||""}
-        onChange={handleInputChange}
-        readOnly
-      />
-      <br />
-      <label>Customer Retrieval Rate:</label>
-      <input
-        type="text"
-        name="parameter4"
-        value={records.parameter4 }
-        onChange={handleInputChange}
-        readOnly
-      />
-    </form>
+    <>
+    <Header/>
+      <form>
+        <h3 className="h3">Parameters</h3>
+        <p>View only</p>
+        <label>Maximum Tickets:</label>
+        
+        <input
+          type="text"
+          name="parameter1"
+          value={records.parameter1 ||""}
+          onChange={handleInputChange}
+          readOnly
+        />
+        <br />
+        <label>Total Tickets:</label>
+        <input
+          type="text"
+          name="parameter2"
+          value={records.parameter2 ||""}
+          onChange={handleInputChange}
+          readOnly
+        />
+        <br />
+        <label>Ticket Release Rate:</label>
+        <input
+          type="text"
+          name="parameter3"
+          value={records.parameter3 ||""}
+          onChange={handleInputChange}
+          readOnly
+        />
+        <br />
+        <label>Customer Retrieval Rate:</label>
+        <input
+          type="text"
+          name="parameter4"
+          value={records.parameter4 }
+          onChange={handleInputChange}
+          readOnly
+        />
+      </form>
+    <Footer/>  
+    </>
   );
 }
 

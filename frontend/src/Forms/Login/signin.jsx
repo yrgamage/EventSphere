@@ -1,3 +1,5 @@
+import Footer from "../../Components/Footer/Footer";
+import Header from "../../Components/Header/Header";
 import "./signin.css";
 import { useNavigate } from "react-router";  // Make sure you import from 'react-router-dom'
 
@@ -48,6 +50,7 @@ function Signin() {  // Renamed to Signin (capitalized)
 
   return (
     <>
+    <Header/>
       <div className="cover">
         <form id="loginForm" onSubmit={handleSubmit}>
           <h3 className="h3">Register</h3>
@@ -95,6 +98,7 @@ function Signin() {  // Renamed to Signin (capitalized)
           </button>
         </form>
       </div>
+      <Footer/>
     </>
   );
 }

@@ -1,6 +1,4 @@
 package com.oop.backend.entity;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 import jakarta.persistence.*;
@@ -25,7 +23,6 @@ public class Event {
     private String eventDate;
     private String eventTime;
     private String eventLocation;
-    @Positive
     private int ticketPrice;
     private String eventImage;
 }

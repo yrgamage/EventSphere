@@ -36,73 +36,8 @@ public class Main {
 
         switch (prompt){
             case 1:
-                System.out.println("Starting system ...........");
-                data = DataExtractor.dataExtractor();
-                TicketPool.addingTotalTickets(data);
-                int ticketVendorCount,ticketCustomerCount;
-                while (true) {
-                    try {
-                        System.out.print("Enter number of customers : ");
-                        customerCount = input.nextInt();
-                        System.out.print("Enter number of tickets per customer ");
-                        ticketCustomerCount = input.nextInt();
-                        if (customerCount > 0 && ticketCustomerCount > 0) {
-                            break;
-                        } else {
-                            throw new IllegalArgumentException();
-                        }
-                    } catch (InputMismatchException | IllegalArgumentException e) {
-                        System.out.println("Invalid input");
-                        input.next();
-                    }
-                }
-
-                    while (true) {
-                        try {
-                            System.out.print("Enter number of vendors : ");
-                            vendorCount = input.nextInt();
-                            System.out.print("Enter number of tickets per vendor : ");
-                            ticketVendorCount = input.nextInt();
-                            if (vendorCount > 0 && ticketVendorCount > 0) {
-                                break;
-                            } else {
-                                throw new IllegalArgumentException();
-                            }
-                        } catch (InputMismatchException | IllegalArgumentException e) {
-                            System.out.println("Invalid input");
-                            input.next();
-                        }
-                    }
-                System.out.println("Enter 0 to stop : ");
-
-                    Thread stopButton = new Thread(()->{
-                        boolean isRunning = true;
-                        while (isRunning) {
-                            if (input.hasNextInt()) { // Check if user has entered input
-                                int command = input.nextInt();
-                                if (command == 0) {
-                                    isRunning = false; // Set flag to stop all threads
-                                    System.out.println("Exiting...");
-                                    System.exit(0);
-                                }
-                            }
-                        }
-                    });
-                    stopButton.start();
-                        for(int i=1;i<=vendorCount;i++){
-
-                            ReleaseTicket releaseTicket = new ReleaseTicket(i,data,ticketVendorCount);
-                            Thread customerThread = new Thread(releaseTicket);
-                            customerThread.start();
-                        }
-
-                        for(int i=1;i<=customerCount;i++){
-
-                            BuyTicket buyTicket = new BuyTicket(i,data,ticketCustomerCount);
-                            Thread vendorThread = new Thread(buyTicket);
-                            vendorThread.start();
-                        }
-                        break;
+                startingSystem();
+                break;
             case 2:
                 config = param();
                 DatabaseConnector.databaseUpdater(config);
@@ -144,7 +79,7 @@ public class Main {
     public  static Configuration param() {
         boolean condition = true;
         int TTickets = 0,MaxTicket = 0;
-        float TReleaseRate=0,CustomerRetrievalRate;
+        float TReleaseRate=0,CustomerRetrievalRate=0;
         Scanner input = new Scanner(System.in);
         while (condition) {
             try {
@@ -166,28 +101,33 @@ public class Main {
                 input.nextLine();
             }
         }
-        while (true) {
+        boolean condition1 = true;
+        while (condition1) {
             try {
                 System.out.print("Enter ticket release rate per 15 seconds : ");
                 TReleaseRate = input.nextFloat();
-                if (TReleaseRate <1) {
-                    System.out.println("Ticket release rate must not exceed total ticket count.");
+                if (TReleaseRate <16) {
+                    condition1 = false;
+                    
+                }else{
+                    System.out.println("Maximum capasity is ticket per second.");
                     throw new IllegalArgumentException("\n");
                 }
-                break;
             } catch (InputMismatchException | IllegalArgumentException e) {
                 System.out.println("Invalid input.");
             }
         }
-        while (true) {
+        boolean condition2 = true;
+        while (condition2) {
             try {
                 System.out.print("Enter customer retrieval rate per 15 seconds: ");
                 CustomerRetrievalRate = input.nextFloat();
-                if (CustomerRetrievalRate > TReleaseRate) {
-                    System.out.println("Customer Retrieval Rate rate must not exceed Ticket Release Rate.");
+                if (CustomerRetrievalRate>16) {
+                    System.out.println("Maximum capasity is ticket per second.");
                     throw new IllegalArgumentException("\n");
+                }else {
+                    condition2= false;
                 }
-                break;
             } catch (InputMismatchException | IllegalArgumentException e) {
                 System.out.println("Invalid input");
             }
@@ -224,6 +164,76 @@ public class Main {
     }
 
 
+    public static void startingSystem(){
+        Scanner input =  new Scanner(System.in);
+        System.out.println("Starting system ...........");
+        data = DataExtractor.dataExtractor();
+        TicketPool.addingTotalTickets(data);
+        int ticketVendorCount,ticketCustomerCount;
+        while (true) {
+            try {
+                System.out.print("Enter number of customers : ");
+                customerCount = input.nextInt();
+                System.out.print("Enter number of tickets per customer ");
+                ticketCustomerCount = input.nextInt();
+                if (customerCount > 0 && ticketCustomerCount > 0) {
+                    break;
+                } else {
+                    throw new IllegalArgumentException();
+                }
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                System.out.println("Invalid input");
+                input.next();
+            }
+        }
+
+        while (true) {
+            try {
+                System.out.print("Enter number of vendors : ");
+                vendorCount = input.nextInt();
+                System.out.print("Enter number of tickets per vendor : ");
+                ticketVendorCount = input.nextInt();
+                if (vendorCount > 0 && ticketVendorCount > 0) {
+                    break;
+                } else {
+                    throw new IllegalArgumentException();
+                }
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                System.out.println("Invalid input");
+                input.next();
+            }
+        }
+        System.out.println("Enter 0 to stop : ");
+
+        Thread stopButton = new Thread(()->{
+            boolean isRunning = true;
+            while (isRunning) {
+                if (input.hasNextInt()) { // Check if user has entered input
+                    int command = input.nextInt();
+                    if (command == 0) {
+                        isRunning = false; // Set flag to stop all threads
+                        System.out.println("Exiting...");
+                        System.exit(0);
+                    }
+                }
+            }
+        });
+        stopButton.start();
+
+        for(int i=1;i<=vendorCount;i++){
+
+            ReleaseTicket releaseTicket = new ReleaseTicket(i,data,ticketVendorCount);
+            Thread customerThread = new Thread(releaseTicket);
+            customerThread.start();
+        }
+
+        for(int i=1;i<=customerCount;i++){
+
+            BuyTicket buyTicket = new BuyTicket(i,data,ticketCustomerCount);
+            Thread vendorThread = new Thread(buyTicket);
+            vendorThread.start();
+        }
+    }
 
 
 

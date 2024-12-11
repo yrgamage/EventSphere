@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 import VendorPage from './Pages/VendorPage.jsx';
 import CustomerPage from './Pages/CustomerPage.jsx';
-import SigninPage from './Forms/Login/signin.jsx';
-import SignupPage from './Forms/SignupPage/SignupPage.jsx';
+import SignupPage from './Forms/Login/signin.jsx';
 import Parameteres from './Pages/Parameteres.jsx';
 import Home from './Pages/Home.jsx';
 
@@ -35,10 +34,6 @@ const router = createBrowserRouter([
   },
   {
     path: '/signin',
-    element: <div><SigninPage /></div>
-  },
-  {
-    path: '/signup',
     element: <div><SignupPage /></div>
   }
 ]);
