@@ -12,9 +12,8 @@ function App() {
   return (
     
     <>
-    <Header/>
     <Home/>
-    <Footer/>
+    
 
 
     

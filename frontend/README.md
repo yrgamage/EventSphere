@@ -1,13 +1,13 @@
-# EventSphere - Frontend
+# TicketSphere - Frontend
 
-The **EventSphere - Frontend** is a modern and interactive client-side application built with **React** and **JavaScript**. This project serves as the front-end interface for the TicketWave system, providing users with features such as event browsing, ticket booking, and user management. It utilizes **Vite** for fast builds and hot module replacement, ensuring a seamless development experience.
+The **TicketSphere - Frontend** is a modern and interactive client-side application built with **React** and **JavaScript**. This project serves as the front-end interface for the TicketWave system, providing users with features such as event browsing, ticket booking, and user management. It utilizes **Vite** for fast builds and hot module replacement, ensuring a seamless development experience.
 
 
 ---
 
 ## Table of Contents
 
-- [TicketWave - Frontend](#ticketwave---frontend)
+- [TicketSphere - Frontend](#ticketSphere---frontend)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Features](#features)
@@ -22,7 +22,7 @@ The **EventSphere - Frontend** is a modern and interactive client-side applicati
 
 ## Overview
 
-The TicketWave - Frontend is designed to deliver an intuitive and responsive user experience for the TicketWave system. It integrates with the backend via RESTful APIs, offering a streamlined workflow for users to explore events, manage bookings, and access personalized features.
+The TicketSphere - Frontend is designed to deliver an intuitive and responsive user experience for the Ticketing system. It integrates with the backend via REST APIs, offering a streamlined workflow for users to explore events, manage bookings, and access personalized features.
 
 ---
 
@@ -30,32 +30,27 @@ The TicketWave - Frontend is designed to deliver an intuitive and responsive use
 
 
 1. **User Authentication**  
-   Includes user login, registration, and session management.
+   Includes user registration, and session management.
 
 2. **Event Browsing**  
-   Allows users to view and search for events with detailed descriptions.
+   Allows users to view for events with detailed descriptions.
 
 3. **Ticket Booking**  
    Enables seamless ticket booking with validation and error handling.
 
-4. **Responsive Design**  
-   Ensures compatibility across devices for a consistent user experience.
-
-5. **Type Safety**  
+4. **Type Safety**  
    Built with TypeScript to enhance code quality and maintainability.
-
 
 ---
 
 ## Technologies Used
 
 - **React**: A library for building user interfaces.
-- **TypeScript**: For static type checking and better code maintainability.
+- **JavaScript**: For static type checking and better code maintainability.
 - **Vite**: A fast build tool for modern front-end projects.
-- **Axios**: For HTTP requests and API integration.
+- **Rest API**: For HTTP requests and API integration.
 - **React Router**: For handling client-side routing.
-- **Material UI**: Customizable React components for responsive, modern interfaces.
-- **WebSockets**: Enables real-time updates for ticket availability and status.
+- **CSS**: Cascade Sysle Sheets for responsive, modern interfaces.
 
 ---
 
@@ -74,7 +69,7 @@ The TicketWave - Frontend is designed to deliver an intuitive and responsive use
 1. **Clone the Repository**  
    Clone the TicketWave repository from GitHub:
    ```bash
-   git clone https://github.com/Lashen1227/TicketWave.git
+   git clone https://github.com/yrgamage/EventSphere.git
    ```
 
 2. **Navigate to the Frontend Folder**  
@@ -111,6 +106,4 @@ The TicketWave - Frontend is designed to deliver an intuitive and responsive use
 ---
 
 
-## License
 
-This project is licensed under the [MIT License](LICENSE).
