@@ -74,7 +74,7 @@ The EventSphere - Frontend is designed to deliver an intuitive and responsive us
 
 2. **Navigate to the Frontend Folder**  
    ```bash
-   cd TicketWave/frontend
+   cd EventWave/frontend
    ```
 
 3. **Install Dependencies**  
