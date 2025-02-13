@@ -98,7 +98,7 @@ backend/
 
 2. **Navigate to the Backend Folder**
    ```bash
-   cd TicketSphere/backend
+   cd EventSphere/backend
    ```
 
 3. **Configure Database Connection**  
@@ -124,6 +124,6 @@ backend/
 
 Explore the comprehensive API documentation for the Event Ticketing System:
 
-- **Swagger Documentation**: [EventWave API](http://localhost:8080/swagger-ui/index.html)
+- **Swagger Documentation**: [EventSpire API](http://localhost:8080/swagger-ui/index.html)
    
 ---
