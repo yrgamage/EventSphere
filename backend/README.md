@@ -1,6 +1,6 @@
-# TicketSphere - Backend
+# EventSphere - Backend
 
-The **TicketSphere - Backend** is a robust backend system developed using **Spring Boot** and **MySQL** with Object-Oriented Programming (OOP) principals. It provides core functionality to manage configurations, users, and simulate operations for a real-time ticketing system. The backend is designed with scalability and modularity in mind, leveraging the capabilities of Spring Framework and a relational database for persistent data storage.
+The **EventSphere - Backend** is a robust backend system developed using **Spring Boot** and **MySQL** with Object-Oriented Programming (OOP) principals. It provides core functionality to manage configurations, users, and simulate operations for a real-time ticketing system. The backend is designed with scalability and modularity in mind, leveraging the capabilities of Spring Framework and a relational database for persistent data storage.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ The **TicketSphere - Backend** is a robust backend system developed using **Spri
 
 ## Overview
 
-TicketSphere's backend enables seamless integration with front-end systems and provides APIs for managing ticketing configurations, user accounts, and system simulations. The application adheres to **RESTful principles**, ensuring easy integration and high performance.
+EventSphere's backend enables seamless integration with front-end systems and provides APIs for managing ticketing configurations, user accounts, and system simulations. The application adheres to **RESTful principles**, ensuring easy integration and high performance.
 
 ---
 
@@ -91,7 +91,7 @@ backend/
 ### Setup Instructions
 
 1. **Clone the Repository**  
-   Clone the TicketWave repository from GitHub:
+   Clone the EventWave repository from GitHub:
    ```bash
    git clone https://github.com/yrgamage/EventSphere.git
    ```
@@ -124,6 +124,6 @@ backend/
 
 Explore the comprehensive API documentation for the Event Ticketing System:
 
-- **Swagger Documentation**: [TicketWave API](http://localhost:8080/swagger-ui/index.html)
+- **Swagger Documentation**: [EventWave API](http://localhost:8080/swagger-ui/index.html)
    
 ---
