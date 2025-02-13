@@ -1,13 +1,13 @@
-# TicketSphere - Frontend
+# EventSphere - Frontend
 
-The **TicketSphere - Frontend** is a modern and interactive client-side application built with **React** and **JavaScript**. This project serves as the front-end interface for the TicketWave system, providing users with features such as event browsing, ticket booking, and user management. It utilizes **Vite** for fast builds and hot module replacement, ensuring a seamless development experience.
+The **EventSphere - Frontend** is a modern and interactive client-side application built with **React** and **JavaScript**. This project serves as the front-end interface for the TicketWave system, providing users with features such as event browsing, ticket booking, and user management. It utilizes **Vite** for fast builds and hot module replacement, ensuring a seamless development experience.
 
 
 ---
 
 ## Table of Contents
 
-- [TicketSphere - Frontend](#ticketSphere---frontend)
+- [EventSphere - Frontend](#ticketSphere---frontend)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Features](#features)
@@ -22,7 +22,7 @@ The **TicketSphere - Frontend** is a modern and interactive client-side applicat
 
 ## Overview
 
-The TicketSphere - Frontend is designed to deliver an intuitive and responsive user experience for the Ticketing system. It integrates with the backend via REST APIs, offering a streamlined workflow for users to explore events, manage bookings, and access personalized features.
+The EventSphere - Frontend is designed to deliver an intuitive and responsive user experience for the Ticketing system. It integrates with the backend via REST APIs, offering a streamlined workflow for users to explore events, manage bookings, and access personalized features.
 
 ---
 
